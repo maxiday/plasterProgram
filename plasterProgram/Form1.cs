@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace plasterProgram
 {
@@ -15,6 +16,30 @@ namespace plasterProgram
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            SendKeys.Send(textBox1.Text);
+            SendKeys.Send("{ENTER}");
+            Thread.Sleep(500);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                log.Items.Add("텍스트를 입력해주세요.");
+            }
+            else
+            {
+                timer1.Enabled = true;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
         }
     }
 }
